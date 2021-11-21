@@ -7,10 +7,20 @@ struct point
 	double x, y;
 };
 
-ifstream& operator>>(ifstream& is, const vector<point>& p)
+vector<point> original_points;
+vector<point> processed_points;
+ofstream outputfile{ "mydata.txt"};
+ifstream inputfile{ "mydata.txt"};
+
+
+ifstream& operator>>(ifstream& is, vector<point>& p)
 {
-	for (int i = 0; i < p.size(); ++ i)
-		cout << "is X: " << p[i].x << " Y: " << p[i].y << '\n';
+	double x;
+	double y;
+	for (int i = 0; i < original_points.size(); ++i){
+		is >> x >> y;
+		p.emplace_back(x, y);
+	}
 	return is;
 }
 
@@ -41,11 +51,6 @@ bool operator==(const vector<point>& p1, const vector<point>& p2)
 		}
 	return true;
 }
-
-vector<point> original_points;
-vector<point> processed_points;
-ofstream outputfile{ "mydata.txt"};
-ifstream inputfile{ "mydata.txt"};
 
 int main(){
 
