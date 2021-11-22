@@ -9,27 +9,27 @@ struct point
 
 vector<point> original_points;
 vector<point> processed_points;
-ofstream outputfile{ "mydata.txt"};
-ifstream inputfile{ "mydata.txt"};
+string file = "mydata.txt";
+ofstream outputfile{ file };
+ifstream inputfile{ file };
 
+ostream& operator<<(ostream& os, const vector<point>& p)
+{
+	for (int i = 0; i < p.size(); ++i)
+		os << p[i].x << ' ' << p[i].y << '\n';
+	return os;
+}
 
 ifstream& operator>>(ifstream& is, vector<point>& p)
 {
 	double x;
 	double y;
-	for (int i = 0; i < original_points.size(); ++i){
+	for (int i = 0; i < original_points.size(); ++i)
+		{
 		is >> x >> y;
-		p.emplace_back(x, y);
-	}
+		p.push_back(point(x, y));
+		}
 	return is;
-}
-
-
-ostream& operator<<(ostream& os, const vector<point>& p)
-{
-	for (int i = 0; i < p.size(); ++i)
-		cout << "os X: " << p[i].x << " Y: " << p[i].y << '\n';
-	return os;
 }
 
 void printvector(const vector<point>& p)
@@ -59,10 +59,10 @@ int main(){
 
 	cout << "Please enter seven points(X,Y): \n";
 	
-	for (int i = 0; i < 7; ++i){
+	for (int i = 0; i < 7; ++i)
+	{
 		cin >> x >> y;
-
-		original_points.emplace_back(x, y);
+		original_points.push_back(point(x, y));
 	}
 
 	printvector(original_points);
