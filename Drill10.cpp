@@ -16,7 +16,7 @@ ifstream inputfile{ file };
 ostream& operator<<(ostream& os, const vector<point>& p)
 {
 	for (int i = 0; i < p.size(); ++i)
-		os << p[i].x << ' ' << p[i].y << '\n';
+		os << p[i].x << ' ' << p[i].y << endl;
 	return os;
 }
 
@@ -46,7 +46,7 @@ bool operator==(const vector<point>& p1, const vector<point>& p2)
 	else 
 		for (int i = 0; i < p1.size(); ++i)
 		{
-			if (p1[i].x != p2[i].x && p1[i].y != p2[i].y)
+			if (p1[i].x != p2[i].x || p1[i].y != p2[i].y)
 				return false;
 		}
 	return true;
